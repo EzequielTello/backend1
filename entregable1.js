@@ -40,6 +40,15 @@ class ProductManager {
       console.log(product);
     }
   }
+  getProductById(id) {
+    let product = this.products.find((p) => p.id === id);
+
+    if (product === undefined) {
+      console.log(`No existe ningún auto con el ID ${id}`);
+    } else {
+      console.log(product);
+    }
+  }
 }
 
 const product = new ProductManager();
@@ -57,3 +66,7 @@ console.log(product.getProducts());
 console.log("---------");
 product.getProductByCode("yy");
 product.getProductByCode("aa");
+
+console.log("---------");
+product.getProductById(product.getProducts()[0].id);
+product.getProductById("aaaaa");
