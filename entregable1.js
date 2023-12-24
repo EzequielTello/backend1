@@ -49,6 +49,32 @@ class ProductManager {
       console.log(product);
     }
   }
+
+  updateProduct(id, updatedFields) {
+    let productIndex = this.products.findIndex((p) => p.id === id);
+
+    if (productIndex !== -1) {
+      this.products[productIndex] = {
+        ...this.products[productIndex],
+        ...updatedFields,
+      };
+
+      console.log(`Producto con ID ${id} actualizado correctamente`);
+    } else {
+      console.log(`No existe ningún producto con el ID ${id}`);
+    }
+  }
+
+  deleteProduct(id) {
+    let productIndex = this.products.findIndex((p) => p.id === id);
+
+    if (productIndex !== -1) {
+      this.products.splice(productIndex, 1);
+      console.log(`Producto con ID ${id} eliminado correctamente`);
+    } else {
+      console.log(`No existe ningún producto con el ID ${id}`);
+    }
+  }
 }
 
 const product = new ProductManager();
@@ -70,3 +96,13 @@ product.getProductByCode("aa");
 console.log("---------");
 product.getProductById(product.getProducts()[0].id);
 product.getProductById("aaaaa");
+
+console.log("---------");
+product.updateProduct(product.getProducts()[0].id, {
+  price: 2500,
+});
+console.log(product.getProducts());
+
+console.log("---------");
+product.deleteProduct(product.getProducts()[0].id);
+console.log(product.getProducts());
