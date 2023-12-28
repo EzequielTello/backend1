@@ -1,18 +1,10 @@
 [
   {
-    "id": "_rehgl923v",
+    "id": "_74w98i18c",
     "title": "Toyota Corolla ",
-    "description": "Sedan 1.8",
+    "description": "sedan 1.8 xei",
     "price": 3000,
     "code": "cc",
-    "stock": 5
-  },
-  {
-    "id": "_7wf70oxdp",
-    "title": "Toyota Hilux ",
-    "description": "4x4 srx",
-    "price": 5000,
-    "code": "hh",
-    "stock": 12
+    "stock": 10
   }
 ]
