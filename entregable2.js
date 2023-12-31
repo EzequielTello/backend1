@@ -4,6 +4,10 @@ class ProductManager {
   constructor(filePath) {
     this.filePath = filePath;
     this.products = this.loadProducts();
+    this.idCounter =
+      this.products.length > 0
+        ? Math.max(...this.products.map((p) => parseInt(p.id.slice(1)))) + 1
+        : 0;
   }
 
   loadProducts() {
@@ -21,7 +25,7 @@ class ProductManager {
   }
 
   generateId() {
-    return "_" + Math.random().toString(36).slice(2, 11);
+    return "_" + this.idCounter++;
   }
 
   getProducts() {
@@ -105,7 +109,13 @@ console.log(productManager.getProducts());
 
 console.log("---------");
 const productId = productManager.getProducts()[0].id;
+console.log("Obtener producto por ID existente:");
 console.log(productManager.getProductById(productId));
+
+console.log("---------");
+const nonExistentProductId = "unIDQueNoExiste";
+console.log("Obtener producto por ID no existente:");
+console.log(productManager.getProductById(nonExistentProductId));
 
 console.log("---------");
 productManager.updateProduct(productId, {
