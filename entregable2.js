@@ -4,10 +4,7 @@ class ProductManager {
   constructor(filePath) {
     this.filePath = filePath;
     this.products = this.loadProducts();
-    this.idCounter =
-      this.products.length > 0
-        ? Math.max(...this.products.map((p) => parseInt(p.id.slice(1)))) + 1
-        : 0;
+    this.id = 1;
   }
 
   loadProducts() {
@@ -22,10 +19,6 @@ class ProductManager {
   saveProducts() {
     const data = JSON.stringify(this.products, null, 2);
     fs.writeFileSync(this.filePath, data, "utf8");
-  }
-
-  generateId() {
-    return "_" + this.idCounter++;
   }
 
   getProducts() {
@@ -66,7 +59,7 @@ class ProductManager {
 
     if (!this.products.some((p) => p.code === code)) {
       let newProduct = {
-        id: this.generateId(),
+        id: this.id++,
         title,
         description,
         price,
